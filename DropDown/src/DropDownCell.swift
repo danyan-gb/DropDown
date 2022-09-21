@@ -56,16 +56,18 @@ extension DropDownCell {
 	}
 	
 	override open func setSelected(_ selected: Bool, animated: Bool) {
+        let activeLabel = customOptionLabel != nil ? customOptionLabel : optionLabel
+
 		let executeSelection: () -> Void = { [weak self] in
 			guard let `self` = self else { return }
 
 			if let selectedBackgroundColor = self.selectedBackgroundColor {
 				if selected {
 					self.backgroundColor = selectedBackgroundColor
-                    self.optionLabel.textColor = self.highlightTextColor
+                    activeLabel?.textColor = self.highlightTextColor
 				} else {
 					self.backgroundColor = .clear
-                    self.optionLabel.textColor = self.normalTextColor
+                    activeLabel?.textColor = self.normalTextColor
 				}
 			}
 		}
