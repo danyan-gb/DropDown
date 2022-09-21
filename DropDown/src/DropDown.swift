@@ -1083,20 +1083,25 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 		if index >= 0 && index < localizationKeysDataSource.count {
 			cell.accessibilityIdentifier = localizationKeysDataSource[index]
 		}
-		
-		cell.optionLabel.textColor = textColor
-		cell.optionLabel.font = textFont
+
 		cell.selectedBackgroundColor = selectionBackgroundColor
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
-		
-		if let cellConfiguration = cellConfiguration {
-			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
-		} else {
-			cell.optionLabel.text = dataSource[index]
-		}
-		
-		customCellConfiguration?(index, dataSource[index], cell)
+
+        let activeLabel = cell.customOptionLabel != nil ? cell.customOptionLabel : cell.optionLabel
+
+        if let activeLabel = activeLabel {
+            activeLabel.textColor = textColor
+            activeLabel.font = textFont
+
+            if let cellConfiguration = cellConfiguration {
+                activeLabel.text = cellConfiguration(index, dataSource[index])
+            } else {
+                activeLabel.text = dataSource[index]
+            }
+        }
+
+        customCellConfiguration?(index, dataSource[index], cell)
 	}
 
 	public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
