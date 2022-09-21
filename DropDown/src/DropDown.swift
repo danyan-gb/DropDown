@@ -513,6 +513,14 @@ public final class DropDown: UIView {
 //MARK: - Setup
 
 private extension DropDown {
+    func setupCustomClass(with cell: DropDownCell) {
+        tableView.register(
+            type(of: cell.self),
+            forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell
+        )
+        templateCell = cell
+        reloadAllComponents()
+    }
 
 	func setup() {
 		tableView.register(cellNib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
