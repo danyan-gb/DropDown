@@ -1084,21 +1084,19 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 			cell.accessibilityIdentifier = localizationKeysDataSource[index]
 		}
 
+        let activeLabel = cell.customOptionLabel != nil ? cell.customOptionLabel : cell.optionLabel
+
+        activeLabel?.textColor = textColor
+        activeLabel?.font = textFont
+
 		cell.selectedBackgroundColor = selectionBackgroundColor
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
 
-        let activeLabel = cell.customOptionLabel != nil ? cell.customOptionLabel : cell.optionLabel
-
-        if let activeLabel = activeLabel {
-            activeLabel.textColor = textColor
-            activeLabel.font = textFont
-
-            if let cellConfiguration = cellConfiguration {
-                activeLabel.text = cellConfiguration(index, dataSource[index])
-            } else {
-                activeLabel.text = dataSource[index]
-            }
+        if let cellConfiguration = cellConfiguration {
+            activeLabel?.text = cellConfiguration(index, dataSource[index])
+        } else {
+            activeLabel?.text = dataSource[index]
         }
 
         customCellConfiguration?(index, dataSource[index], cell)
