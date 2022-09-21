@@ -22,6 +22,13 @@ open class DropDownCell: UITableViewCell {
 
 }
 
+// MARK : DEFAULT CELL PROPERTIES
+public extension DropDownCell {
+    static var defaultReuseIdentifier: String {
+        DPDConstant.ReusableIdentifier.DropDownCell
+    }
+}
+
 //MARK: - UI
 
 extension DropDownCell {
