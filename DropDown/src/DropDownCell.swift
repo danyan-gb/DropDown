@@ -14,6 +14,9 @@ open class DropDownCell: UITableViewCell {
 		
 	//UI
 	@IBOutlet open weak var optionLabel: UILabel!
+    /**
+     Custom label that will have property similar to option label, but we can init and configure the constraint through the code
+     */
     open var customOptionLabel: UILabel?
 	
 	var selectedBackgroundColor: UIColor?
